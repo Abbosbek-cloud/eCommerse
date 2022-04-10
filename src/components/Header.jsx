@@ -9,7 +9,7 @@ export default function Header() {
         </a>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
           <li>
-            <a href="collapsible.html">GitHub</a>
+            <a href="https://github.com/Abbosbek-cloud/">GitHub</a>
           </li>
         </ul>
       </div>
