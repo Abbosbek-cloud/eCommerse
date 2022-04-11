@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import ProductItem from "./ProductItem";
+import { ShopContext } from "../context";
 
-export default function ProductList(props) {
-  const { goods = [], handleAddBtn } = props;
+export default function ProductList() {
+  const { goods = [] } = useContext(ShopContext);
 
   if (!goods.length) {
     return <h3>Nothing not found</h3>;
@@ -11,7 +12,7 @@ export default function ProductList(props) {
   return (
     <div className="goods">
       {goods.map((item) => (
-        <ProductItem key={item.id} {...item} handleAddBtn={handleAddBtn} />
+        <ProductItem key={item.id} {...item} />
       ))}
     </div>
   );

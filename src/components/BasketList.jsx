@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import BasketItem from "./BasketItem";
+import { ShopContext } from "../context";
 
-const BasketList = (props) => {
-  const { order } = props;
-
+const BasketList = () => {
+  const { order = [], handleBasketShow = Function.prototype } =
+    useContext(ShopContext);
   const totalPrice = order.reduce((sum, good) => {
     return sum + good.price * good.quantity;
   }, 0);
@@ -12,24 +13,13 @@ const BasketList = (props) => {
       <ul className="collection basket-list">
         <li className="collection-item active">
           <span>Savatcha</span>{" "}
-          <i
-            className="material-icons basket-close"
-            onClick={props.handleBasketShow}
-          >
+          <i className="material-icons basket-close" onClick={handleBasketShow}>
             close
           </i>
         </li>
         {order.length ? (
           order.map((item) => {
-            return (
-              <BasketItem
-                key={item.id}
-                {...item}
-                removeOrder={props.removeOrder}
-                increment={props.increment}
-                decrement={props.decrement}
-              />
-            );
+            return <BasketItem key={item.id} {...item} />;
           })
         ) : (
           <li className="collection-item">Bu yerda hali hech narsa yo'q</li>
